@@ -31,3 +31,4 @@ C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\RpgApi\obj\Debug\net9.0\refint\Rpg
 C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\RpgApi\obj\Debug\net9.0\RpgApi.pdb
 C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\RpgApi\obj\Debug\net9.0\RpgApi.genruntimeconfig.cache
 C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\RpgApi\obj\Debug\net9.0\ref\RpgApi.dll
+C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\RpgApi\obj\Debug\net9.0\RpgApi.sourcelink.json
