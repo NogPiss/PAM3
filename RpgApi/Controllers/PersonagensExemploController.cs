@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using RpgApi.Models;
 using RpgApi.Models.Enuns;
 namespace RpgApi.Controllers{
@@ -32,15 +33,7 @@ namespace RpgApi.Controllers{
         public IActionResult GetSingle(int id){
             return Ok(personagens.FirstOrDefault(pe => pe.Id == id));
         }
-
-        [HttpPost]
-        public IActionResult addPersonagem(Personagem novoPersonagem){
-            if(novoPersonagem.Inteligencia == 0)
-                return BadRequest("A Inteligencia do personagem nao pode ser igual a 0.");
-            personagens.Add(novoPersonagem);
-            return Ok(personagens);
-        }
-    
+  
         [HttpGet("GetOrdenado")]
         public IActionResult GetOrdem(){
             List<Personagem> listaFinal = personagens.OrderBy(p => p.Forca).ToList();
@@ -103,6 +96,60 @@ namespace RpgApi.Controllers{
             List<Personagem> p = personagens.FindAll(pe => pe.Classe == enumDigitado);
             return Ok(p);
         }
-        
+
+        /*Atividade*/
+
+        [HttpGet("GetByNome/{nome}")]
+        public IActionResult GetByNome(string nome){
+            Personagem PersonagemNome = personagens.Find(pe => pe.Nome == nome);
+            if(PersonagemNome == null)
+                return NotFound("Personagem não encontrado.");
+            return Ok(PersonagemNome); 
+        }
+
+        [HttpGet("GetClerigoMago")]
+        public IActionResult GetClerigoMago(){
+            List<Personagem> ListaClerigoMago = personagens.FindAll(pe => pe.Classe == ClasseEnum.Mago || pe.Classe == ClasseEnum.Clerigo);
+            ListaClerigoMago = ListaClerigoMago.OrderByDescending(pe => pe.PontosVida).ToList();
+            return Ok(ListaClerigoMago);
+        }
+
+        [HttpGet("GetEstatisticas")]
+        public IActionResult GetEstatisticas(){
+            int quantidadeDePersonagens = personagens.Count();
+            int somaDaInteIigencia = personagens.Sum(pe => pe.Inteligencia);
+
+            string quantidadeDePersonagensString = quantidadeDePersonagens.ToString();
+            string somaDaInteIigenciaString = somaDaInteIigencia.ToString();
+            return Ok("A quantidade de personagens presentes na lista é: " + quantidadeDePersonagensString + "\n a soma das inteligencias é: " + somaDaInteIigenciaString  );
+        }
+
+        [HttpPost("PostValidacao")]
+        public IActionResult addPersonagem(Personagem novoPersonagem){
+            if(novoPersonagem.Defesa < 30){
+                return BadRequest("A defesa do personagem nao pode ser menor que a 30.");
+            }
+            else if(novoPersonagem.Inteligencia < 10){
+                return BadRequest("A Inteligencia do personagem nao pode ser menor que 10.");
+            }
+            personagens.Add(novoPersonagem);
+            return Ok(personagens);
+        }
+
+        [HttpPost("PostValidacaoMago")]
+        public IActionResult PostValidacaoMago(Personagem novPersonagem){
+            if(novPersonagem.Classe == ClasseEnum.Mago && novPersonagem.Inteligencia < 35){
+                return BadRequest("Um personagem da classe mago nao pode ser adicionado com uma inteligencia menor que 35.");
+            }
+            personagens.Add(novPersonagem);
+            return Ok(personagens);
+        }
+
+        [HttpGet("GetByClasse/{classe}")]
+        public IActionResult GetByclasse(ClasseEnum classe){
+            List<Personagem> listasFiltrada = personagens.FindAll(pe => pe.Classe == classe).ToList();
+            return Ok(listasFiltrada);
+        }
+    
     }
 }
