@@ -1,8 +1,9 @@
-namespace RpgApi.Models.Enuns 
+namespace RpgApi.Models.Enuns
 {
-    public enum ClasseEnum{
+    public enum ClasseEnum
+    {
         Cavaleiro = 1,
-        Mago = 2,
+        Mago =2,
         Clerigo = 3
     }
 }
