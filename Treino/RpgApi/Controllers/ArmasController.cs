@@ -19,7 +19,7 @@ namespace RpgApi.Controllers
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll(){
             try{
-                List<Arma> a = await _context.TB_Armas.ToListAsync();
+                List<Arma> a = await _context.TB_ARMAS.ToListAsync();
                 return Ok(a);
             }
             catch(Exception ex){
@@ -31,7 +31,7 @@ namespace RpgApi.Controllers
         [HttpPost]
         public async Task<IActionResult> PostArma(Arma arma){
             try{
-                await _context.TB_Armas.AddAsync(arma);
+                await _context.TB_ARMAS.AddAsync(arma);
                 await _context.SaveChangesAsync();
                 return Ok(GetAll());
             }
@@ -43,7 +43,7 @@ namespace RpgApi.Controllers
         [HttpPut]
         public async Task<IActionResult> atualizaArma(Arma novaArma){
             try{
-                _context.TB_Armas.Update(novaArma);
+                _context.TB_ARMAS.Update(novaArma);
                 await _context.SaveChangesAsync();
                 return Ok(await GetAll());
             }
@@ -56,7 +56,7 @@ namespace RpgApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id){
             try{
-                Arma arma = await _context.TB_Armas.FirstOrDefaultAsync(arma => arma.Id == id);
+                Arma arma = await _context.TB_ARMAS.FirstOrDefaultAsync(arma => arma.Id == id);
                 return Ok(arma);
             }
             catch(Exception ex){
@@ -67,10 +67,10 @@ namespace RpgApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id){
             try{
-                Arma arma = await _context.TB_Armas.FirstOrDefaultAsync(a => a.Id == id);
-                _context.TB_Armas.Remove(arma);
+                Arma arma = await _context.TB_ARMAS.FirstOrDefaultAsync(a => a.Id == id);
+                _context.TB_ARMAS.Remove(arma);
                 await _context.SaveChangesAsync();
-                List<Arma> LArma = await _context.TB_Armas.ToListAsync();
+                List<Arma> LArma = await _context.TB_ARMAS.ToListAsync();
                 return Ok(LArma);
             }
             catch(Exception ex){
