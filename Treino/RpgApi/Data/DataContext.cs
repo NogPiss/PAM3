@@ -14,14 +14,20 @@ namespace RpgApi.Data
         public DbSet<Personagem> TB_PERSONAGEM { get; set; }
         public DbSet<Arma> TB_ARMAS { get; set;}
         public DbSet<Usuario> TB_USUARIOS { get; set; }
+        public DbSet<Habilidade> TB_HABILIDADES { get; set; }
+        public DbSet<PersonagemHabilidade> TB_PERSONAGESN_HABILIDADES { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Personagem>().ToTable("TB_PERSONAGENS");
             modelBuilder.Entity<Arma>().ToTable("TB_ARMAS");
             modelBuilder.Entity<Usuario>().ToTable("TB_USUARIOS");
+            modelBuilder.Entity<Habilidade>().ToTable("TB_HABILIDADES");
+            modelBuilder.Entity<PersonagemHabilidade>().ToTable("TB_PERSONAGENS_HABILIDADES");
 
             modelBuilder.Entity<Usuario>().HasMany(e => e.Personagens).WithOne(e => e.Usuario).HasForeignKey(e => e.UsuarioId).IsRequired(false);
+
+            modelBuilder.Entity<Personagem>().HasOne(e => e.Arma).WithOne(e => e.Personagem).HasForeignKey<Arma>(e => e.PersonagemId).IsRequired();
 
 
             modelBuilder.Entity<Personagem>().HasData(
@@ -36,13 +42,35 @@ namespace RpgApi.Data
 
             
             modelBuilder.Entity<Arma>().HasData(
-                new Arma() { Id = 1, Nome = "Espada Longa", Dano = 15 },
-                new Arma() { Id = 2, Nome = "Machado de Guerra", Dano = 20 },
-                new Arma() { Id = 3, Nome = "Arco Curto", Dano = 8 },
-                new Arma() { Id = 4, Nome = "Adaga Envenenada", Dano = 12 },
-                new Arma() { Id = 5, Nome = "Martelo Sagrado", Dano = 18 },
-                new Arma() { Id = 6, Nome = "Lança de Gelo", Dano = 14 },
-                new Arma() { Id = 7, Nome = "Cajado Arcano", Dano = 16 }
+                new Arma() { Id = 1, Nome = "Espada Longa", Dano = 15, PersonagemId = 1 },
+                new Arma() { Id = 2, Nome = "Machado de Guerra", Dano = 20, PersonagemId = 2  },
+                new Arma() { Id = 3, Nome = "Arco Curto", Dano = 8, PersonagemId = 3  },
+                new Arma() { Id = 4, Nome = "Adaga Envenenada", Dano = 12, PersonagemId = 4  },
+                new Arma() { Id = 5, Nome = "Martelo Sagrado", Dano = 18, PersonagemId = 5  },
+                new Arma() { Id = 6, Nome = "Lança de Gelo", Dano = 14, PersonagemId = 6  },
+                new Arma() { Id = 7, Nome = "Cajado Arcano", Dano = 16, PersonagemId = 7  }
+            );
+
+            modelBuilder.Entity<PersonagemHabilidade>()
+            .HasKey(ph => new {ph.PersonagemId, ph.HabilidadeId});
+
+            modelBuilder.Entity<Habilidade>().HasData(
+                new Habilidade() { Id = 1, Nome="Adormecer", Dano = 39,},
+                new Habilidade() {Id = 2, Nome="Congelar", Dano = 41},
+                new Habilidade() {Id = 3, Nome = "Hipnotiar", Dano = 37}
+            );
+
+
+            modelBuilder.Entity<PersonagemHabilidade>().HasData(
+                new PersonagemHabilidade() {PersonagemId = 1, HabilidadeId = 1},
+                new PersonagemHabilidade() {PersonagemId = 1, HabilidadeId = 2},
+                new PersonagemHabilidade() {PersonagemId = 2, HabilidadeId = 2},
+                new PersonagemHabilidade() {PersonagemId = 3, HabilidadeId = 2},
+                new PersonagemHabilidade() {PersonagemId = 3, HabilidadeId = 3},
+                new PersonagemHabilidade() {PersonagemId = 4, HabilidadeId = 3},
+                new PersonagemHabilidade() {PersonagemId = 5, HabilidadeId = 1},
+                new PersonagemHabilidade() {PersonagemId = 6, HabilidadeId = 2},
+                new PersonagemHabilidade() {PersonagemId = 7, HabilidadeId = 3}
             );
 
             Usuario user = new Usuario();
