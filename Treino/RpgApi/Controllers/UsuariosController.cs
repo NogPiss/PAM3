@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using RpgApi.Data;
 using RpgApi.Models;
 using RpgApi.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RpgApi.Controllers
 {
@@ -39,6 +43,25 @@ namespace RpgApi.Controllers
                 return Ok(user.Id);
                 }
             catch(Exception ex){
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("Autenticar")]
+        public async Task<IActionResult> AutenticarUsuario(Usuario credenciais){
+            try{
+                Usuario? usuario = await _context.TB_USUARIOS.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(credenciais.Username.ToLower()));
+                if(usuario == null){
+                    throw new System.Exception("Usuario não encontrado");
+                }
+                else if(!Criptografia.VerificaPasswordHash(credenciais.PasswordString,usuario.PasswordHash,usuario.PasswordSalt)){
+                    throw new System.Exception("Senha incorreta");
+                }
+                else{
+                    return Ok(usuario);
+                }
+            }
+            catch(System.Exception ex){
                 return BadRequest(ex.Message);
             }
         }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gordu\\Desktop\\gordura\\escola\\PAM\\3ai\\Treino\\RpgApi\\RpgApi.csproj": {}
+    "C:\\Users\\etechas\\PAM3\\Treino\\RpgApi\\RpgApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gordu\\Desktop\\gordura\\escola\\PAM\\3ai\\Treino\\RpgApi\\RpgApi.csproj": {
+    "C:\\Users\\etechas\\PAM3\\Treino\\RpgApi\\RpgApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gordu\\Desktop\\gordura\\escola\\PAM\\3ai\\Treino\\RpgApi\\RpgApi.csproj",
+        "projectUniqueName": "C:\\Users\\etechas\\PAM3\\Treino\\RpgApi\\RpgApi.csproj",
         "projectName": "RpgApi",
-        "projectPath": "C:\\Users\\gordu\\Desktop\\gordura\\escola\\PAM\\3ai\\Treino\\RpgApi\\RpgApi.csproj",
-        "packagesPath": "C:\\Users\\gordu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gordu\\Desktop\\gordura\\escola\\PAM\\3ai\\Treino\\RpgApi\\obj\\",
+        "projectPath": "C:\\Users\\etechas\\PAM3\\Treino\\RpgApi\\RpgApi.csproj",
+        "packagesPath": "C:\\Users\\etechas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\etechas\\PAM3\\Treino\\RpgApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\gordu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\etechas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -85,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

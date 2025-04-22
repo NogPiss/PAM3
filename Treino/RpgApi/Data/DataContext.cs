@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using RpgApi.Models;
 using RpgApi.Models.Enuns;
 using RpgApi.Utils;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace RpgApi.Data
 {
@@ -93,7 +94,11 @@ namespace RpgApi.Data
         {
             configurationBuilder.Properties<string>().HaveColumnType("varchar").HaveMaxLength(200);
         }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.ConfigureWarnings(warnings =>
+              warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+        }
 
     }
 }
