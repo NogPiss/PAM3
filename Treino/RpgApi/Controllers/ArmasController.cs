@@ -29,16 +29,34 @@ namespace RpgApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostArma(Arma arma){
-            try{
-                await _context.TB_ARMAS.AddAsync(arma);
+        public async Task<IActionResult> PostArma(Arma novaArma)
+        {
+            try
+            {
+                if (novaArma.Dano == 0)
+                    throw new Exception("O dano da arma não pode ser 0");
+
+                var personagem = await _context.TB_PERSONAGEM
+                    .Include(p => p.Arma)
+                    .FirstOrDefaultAsync(p => p.Id == novaArma.PersonagemId);
+
+                if (personagem == null)
+                    throw new Exception("Personagem não encontrado.");
+
+                if (personagem.Arma != null)
+                    throw new Exception("Esse personagem já tem uma arma.");
+
+                await _context.TB_ARMAS.AddAsync(novaArma);
                 await _context.SaveChangesAsync();
-                return Ok(GetAll());
+
+                return Ok(novaArma);
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
         }
+
 
         [HttpPut]
         public async Task<IActionResult> atualizaArma(Arma novaArma){

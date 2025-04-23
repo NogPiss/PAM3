@@ -23,6 +23,17 @@ namespace RpgApi.Controllers
             return false;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll(){
+            try{
+                List<Usuario> Lu = await _context.TB_USUARIOS.ToListAsync();
+                return Ok(Lu);
+            }
+            catch(Exception ex){
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("Registrar")]
         public async Task<IActionResult> RegistrarUsuario(Usuario user){
             try{
@@ -42,6 +53,30 @@ namespace RpgApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("Autenticar")]
+        public async Task<IActionResult> AutenticarUsuario(Usuario credenciais){
+            try{
+                Usuario? usuario = await _context.TB_USUARIOS.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(credenciais.Username.ToLower()));
+                if(usuario == null){
+                    throw new System.Exception("Usuário não encontrado");
+                }
+                else if(!Criptografia.VerificaPasswordHash(credenciais.PasswordString, usuario.PasswordHash, usuario.PasswordSalt)){
+                    throw new System.Exception("A senha digitada não está correta");
+                }
+                else{
+                    return Ok(usuario);
+                }
+            }
+            catch(Exception ex){
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("AlterarSenha")]
+        public async Task<IActionResult> AlterarSenha(){
+            
+        } 
 
     }
 }

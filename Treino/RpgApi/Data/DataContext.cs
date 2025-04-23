@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using RpgApi.Models;
 using RpgApi.Models.Enuns;
 using RpgApi.Utils;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace RpgApi.Data
 {
@@ -87,6 +88,12 @@ namespace RpgApi.Data
 
             modelBuilder.Entity<Usuario>().HasData(user);
             modelBuilder.Entity<Usuario>().Property(u => u.Perfil).HasDefaultValue("Jogador");
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.ConfigureWarnings(warnings =>
+              warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
         }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

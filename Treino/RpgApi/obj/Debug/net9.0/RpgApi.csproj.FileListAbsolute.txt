@@ -170,3 +170,7 @@ C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\Treino\RpgApi\bin\Debug\net9.0\pub
 C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\Treino\RpgApi\bin\Debug\net9.0\publish\RpgApi.deps.json
 C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\Treino\RpgApi\bin\Debug\net9.0\publish\RpgApi.runtimeconfig.json
 C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\Treino\RpgApi\bin\Debug\net9.0\publish\RpgApi.staticwebassets.endpoints.json
+C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\Treino\RpgApi\bin\Debug\net9.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\Treino\RpgApi\bin\Debug\net9.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\Treino\RpgApi\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\gordu\Desktop\gordura\escola\PAM\3ai\Treino\RpgApi\bin\Debug\net9.0\Newtonsoft.Json.Bson.dll

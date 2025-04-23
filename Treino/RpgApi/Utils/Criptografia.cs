@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 namespace RpgApi.Utils
 {
     public class Criptografia
@@ -8,5 +10,18 @@ namespace RpgApi.Utils
                 hash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
+
+        public static bool VerificaPasswordHash(string password, byte[] hash, byte[] salt){
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(salt)){
+                var comutedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                for(int i = 0; i < comutedHash.Length; i++){
+                    if (comutedHash[i] != hash[i]){
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+
     }
 }

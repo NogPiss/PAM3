@@ -18,7 +18,11 @@ namespace RpgApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSingle(int id){
             try{
-                Personagem p = await _context.TB_PERSONAGEM.FirstOrDefaultAsync(pBusca => pBusca.Id == id);
+                Personagem p = await _context.TB_PERSONAGEM
+                .Include(ar => ar.Arma)
+                .Include(ph => ph.PersonagemHabilidades)
+                .ThenInclude(h => h.Habilidade)
+                .FirstOrDefaultAsync(pBusca => pBusca.Id == id);
                 return Ok(p);
             }
             catch(System.Exception ex){
