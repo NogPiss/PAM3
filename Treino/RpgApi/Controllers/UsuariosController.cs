@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using RpgApi.Data;
 using RpgApi.Models;
 using RpgApi.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RpgApi.Controllers
 {
@@ -59,24 +63,38 @@ namespace RpgApi.Controllers
             try{
                 Usuario? usuario = await _context.TB_USUARIOS.FirstOrDefaultAsync(x => x.Username.ToLower().Equals(credenciais.Username.ToLower()));
                 if(usuario == null){
+<<<<<<< HEAD
                     throw new System.Exception("Usuário não encontrado");
                 }
                 else if(!Criptografia.VerificaPasswordHash(credenciais.PasswordString, usuario.PasswordHash, usuario.PasswordSalt)){
                     throw new System.Exception("A senha digitada não está correta");
+=======
+                    throw new System.Exception("Usuario não encontrado");
+                }
+                else if(!Criptografia.VerificaPasswordHash(credenciais.PasswordString,usuario.PasswordHash,usuario.PasswordSalt)){
+                    throw new System.Exception("Senha incorreta");
+>>>>>>> 5c5b0177ccc0c60ad2b4b363305aa6f1a3fe5b3f
                 }
                 else{
                     return Ok(usuario);
                 }
             }
+<<<<<<< HEAD
             catch(Exception ex){
+=======
+            catch(System.Exception ex){
+>>>>>>> 5c5b0177ccc0c60ad2b4b363305aa6f1a3fe5b3f
                 return BadRequest(ex.Message);
             }
         }
 
+<<<<<<< HEAD
         [HttpPut("AlterarSenha")]
         public async Task<IActionResult> AlterarSenha(){
             
         } 
 
+=======
+>>>>>>> 5c5b0177ccc0c60ad2b4b363305aa6f1a3fe5b3f
     }
 }

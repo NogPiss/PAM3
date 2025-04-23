@@ -100,7 +100,11 @@ namespace RpgApi.Data
         {
             configurationBuilder.Properties<string>().HaveColumnType("varchar").HaveMaxLength(200);
         }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.ConfigureWarnings(warnings =>
+              warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+        }
 
     }
 }
