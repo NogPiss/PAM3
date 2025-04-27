@@ -15,7 +15,7 @@ namespace RpgApi.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost("addPersonagemHabilidade")]
         public async Task<IActionResult> AddPersonagemHabilidadeAsync(PersonagemHabilidade novoPersonagemHabilidade){
             try{
                 Personagem personagem = await _context.TB_PERSONAGEM.Include(p => p.Arma).Include(p => p.PersonagemHabilidades).ThenInclude(ps => ps.Habilidade)
@@ -53,5 +53,46 @@ namespace RpgApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("GetHabilidades")]
+        public async Task<IActionResult> GetHabilidades(){
+            try{
+                List<Habilidade> lh = await _context.TB_HABILIDADES.ToListAsync();
+                return Ok(lh);
+            }
+            catch(Exception ex){
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("deletePersonagemHabilidade")]
+        public async Task<IActionResult> deletePersonagemHabilidade(PersonagemHabilidade personagemHabilidade ){
+            try{
+                PersonagemHabilidade ph = await _context.TB_PERSONAGESN_HABILIDADES.FirstOrDefaultAsync(phb => phb.HabilidadeId == personagemHabilidade.HabilidadeId && phb.PersonagemId == personagemHabilidade.PersonagemId);
+                if (ph == null){
+                    throw new Exception("nao encontrado");
+                }
+                else{
+                    _context.TB_PERSONAGESN_HABILIDADES.Remove(ph);
+                    await _context.SaveChangesAsync();
+                }
+                return Ok( await _context.TB_PERSONAGESN_HABILIDADES.ToListAsync());
+            }
+            catch(Exception ex){
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll(){
+            try{
+                List<PersonagemHabilidade> lph = await _context.TB_PERSONAGESN_HABILIDADES.ToListAsync();
+                return Ok(lph);
+            }
+            catch(Exception ex){
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
