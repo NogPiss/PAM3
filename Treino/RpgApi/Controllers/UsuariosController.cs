@@ -44,6 +44,9 @@ namespace RpgApi.Controllers
                 if(await UsuarioExistente(user.Username)){
                     throw new System.Exception("Nome de Usuario já existe");
                 }
+                if(user.Email == ""){
+                    throw new Exception("O usuario não pode ser cadastrado sem um email");
+                }
                 Criptografia.CriarPasswordHash(user.PasswordString, out byte[] hash, out byte[] salt);
                 user.PasswordString = string.Empty;
                 user.PasswordHash = hash;
@@ -78,6 +81,20 @@ namespace RpgApi.Controllers
             }
             catch(Exception ex){
                 return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("AlterarSenha")]
+        public async Task<IActionResult> AlterarSenha(Usuario UsuarioSenhaAlterada){
+            Usuario usuario = await _context.TB_USUARIOS.FirstOrDefaultAsync(u => u.Username == UsuarioSenhaAlterada.Username);
+            if( usuario == null){
+                throw new Exception("O usuario passado não existe");
+            }
+            else if( usuario.PasswordString == UsuarioSenhaAlterada.PasswordString){
+                throw new Exception("A senha não pode ser a mesma");
+            }
+            else{
+                return Ok();
             }
         }
 
