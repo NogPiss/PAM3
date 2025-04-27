@@ -66,17 +66,20 @@ namespace RpgApi.Controllers
         }
 
         [HttpPost("deletePersonagemHabilidade")]
-        public async Task<IActionResult> deletePersonagemHabilidade(PersonagemHabilidade personagemHabilidade ){
+        public async Task<IActionResult> DeletePersonagemHabilidade(PersonagemHabilidade personagemHabilidade ){
             try{
-                PersonagemHabilidade ph = await _context.TB_PERSONAGESN_HABILIDADES.FirstOrDefaultAsync(phb => phb.HabilidadeId == personagemHabilidade.HabilidadeId && phb.PersonagemId == personagemHabilidade.PersonagemId);
+                PersonagemHabilidade? ph = await _context.TB_PERSONAGESN_HABILIDADES.FirstOrDefaultAsync(phb => phb.HabilidadeId == personagemHabilidade.HabilidadeId && phb.PersonagemId == personagemHabilidade.PersonagemId);
                 if (ph == null){
                     throw new Exception("nao encontrado");
                 }
                 else{
                     _context.TB_PERSONAGESN_HABILIDADES.Remove(ph);
                     await _context.SaveChangesAsync();
+
+                     List<PersonagemHabilidade> lph =  await _context.TB_PERSONAGESN_HABILIDADES.ToListAsync(); 
+                     return Ok(lph);
+
                 }
-                return Ok( await _context.TB_PERSONAGESN_HABILIDADES.ToListAsync());
             }
             catch(Exception ex){
                 return BadRequest(ex.Message);
