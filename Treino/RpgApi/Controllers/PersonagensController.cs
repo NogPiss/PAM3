@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using RpgApi.Data;
 using RpgApi.Models;
 
@@ -20,9 +21,13 @@ namespace RpgApi.Controllers
             try{
                 Personagem p = await _context.TB_PERSONAGEM
                 .Include(ar => ar.Arma)
+                .Include(u => u.Usuario)
                 .Include(ph => ph.PersonagemHabilidades)
                 .ThenInclude(h => h.Habilidade)
                 .FirstOrDefaultAsync(pBusca => pBusca.Id == id);
+                // .Include(ph => ph.PersonagemHabilidades)
+                // .ThenInclude(h => h.Habilidade)
+                // .FirstOrDefaultAsync(pBusca => pBusca.Id == id);
                 return Ok(p);
             }
             catch(System.Exception ex){

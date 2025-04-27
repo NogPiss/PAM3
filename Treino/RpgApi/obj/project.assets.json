@@ -4898,32 +4898,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gordu\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\gordu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gordu\\Desktop\\gordura\\escola\\PAM\\3ai\\PAM3\\Treino\\RpgApi\\RpgApi.csproj",
+      "projectUniqueName": "C:\\Users\\gordu\\OneDrive\\Área de Trabalho\\Andre\\escola\\PAM3\\Treino\\RpgApi\\RpgApi.csproj",
       "projectName": "RpgApi",
-      "projectPath": "C:\\Users\\gordu\\Desktop\\gordura\\escola\\PAM\\3ai\\PAM3\\Treino\\RpgApi\\RpgApi.csproj",
+      "projectPath": "C:\\Users\\gordu\\OneDrive\\Área de Trabalho\\Andre\\escola\\PAM3\\Treino\\RpgApi\\RpgApi.csproj",
       "packagesPath": "C:\\Users\\gordu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gordu\\Desktop\\gordura\\escola\\PAM\\3ai\\PAM3\\Treino\\RpgApi\\obj\\",
+      "outputPath": "C:\\Users\\gordu\\OneDrive\\Área de Trabalho\\Andre\\escola\\PAM3\\Treino\\RpgApi\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\gordu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\gordu\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4989,13 +4981,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\gordu\\Desktop\\gordura\\escola\\PAM\\3ai\\PAM3\\Treino\\RpgApi\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

@@ -42,5 +42,16 @@ namespace RpgApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> pega(int id){
+            try{
+                List<PersonagemHabilidade> Li = await _context.TB_PERSONAGESN_HABILIDADES.Where(ph => ph.PersonagemId == id).ToListAsync();
+                return Ok(Li);
+            }
+            catch(Exception ex){
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
