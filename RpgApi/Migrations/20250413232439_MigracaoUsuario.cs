@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -34,7 +35,7 @@ namespace RpgApi.Migrations
                     Foto = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Latitude = table.Column<double>(type: "float", nullable: true),
                     Longitude = table.Column<double>(type: "float", nullable: true),
-                    DataAcesso = table.Column<int>(type: "int", nullable: false),
+                    DataAcesso = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Perfil = table.Column<string>(type: "Varchar(200)", maxLength: 200, nullable: true, defaultValue: "Jogador"),
                     Email = table.Column<string>(type: "Varchar(200)", maxLength: 200, nullable: true)
                 },
@@ -95,7 +96,7 @@ namespace RpgApi.Migrations
             migrationBuilder.InsertData(
                 table: "TB_USUARIOS",
                 columns: new[] { "Id", "DataAcesso", "Email", "Foto", "Latitude", "Longitude", "PasswordHash", "PasswordSalt", "Perfil", "Username" },
-                values: new object[] { 1, 0, "saeuEmail@gmai.com", null, -23.520024100000001, -46.596497999999997, new byte[] { 108, 31, 217, 250, 60, 215, 68, 185, 78, 164, 85, 105, 71, 126, 84, 50, 11, 127, 55, 37, 177, 233, 53, 102, 124, 4, 195, 219, 220, 234, 165, 19, 27, 240, 221, 173, 216, 50, 86, 220, 111, 241, 64, 203, 170, 52, 226, 247, 218, 54, 201, 152, 32, 96, 195, 237, 135, 103, 203, 249, 108, 165, 77, 214 }, new byte[] { 200, 9, 57, 96, 173, 90, 100, 105, 194, 107, 201, 174, 189, 6, 47, 59, 223, 66, 103, 17, 129, 197, 54, 44, 152, 21, 34, 106, 43, 114, 162, 31, 105, 48, 3, 193, 228, 135, 14, 227, 125, 10, 222, 189, 179, 107, 66, 149, 6, 223, 54, 106, 69, 122, 31, 145, 96, 48, 206, 165, 91, 36, 225, 26, 248, 155, 54, 107, 152, 250, 169, 229, 9, 45, 38, 243, 190, 22, 228, 226, 151, 174, 218, 112, 209, 78, 0, 155, 214, 94, 185, 189, 22, 69, 38, 35, 154, 160, 59, 191, 4, 88, 126, 42, 53, 167, 47, 128, 163, 107, 225, 44, 49, 126, 20, 61, 151, 183, 71, 39, 185, 92, 10, 252, 184, 172, 14, 71 }, "Admin", "UsuarioAdmin" });
+                values: new object[] { 1, null, "seuEmail@gmail.com", null, -23.520024100000001, -46.596497999999997, new byte[] { 125, 129, 148, 111, 161, 43, 137, 206, 242, 221, 170, 196, 229, 29, 64, 218, 125, 106, 101, 20, 124, 242, 78, 48, 38, 31, 255, 205, 247, 214, 209, 190, 37, 60, 140, 119, 165, 165, 134, 220, 59, 52, 200, 10, 184, 229, 252, 170, 11, 41, 104, 65, 134, 85, 249, 67, 27, 185, 95, 72, 240, 87, 192, 84 }, new byte[] { 109, 71, 225, 92, 113, 193, 224, 112, 26, 184, 211, 13, 92, 88, 135, 44, 122, 241, 187, 189, 171, 120, 91, 7, 90, 139, 242, 122, 88, 73, 159, 160, 130, 72, 196, 179, 240, 196, 105, 203, 202, 228, 149, 101, 85, 158, 114, 69, 254, 23, 201, 228, 192, 221, 224, 148, 198, 195, 191, 180, 151, 115, 249, 48, 176, 195, 85, 215, 103, 40, 162, 195, 0, 96, 86, 168, 208, 108, 80, 159, 42, 107, 12, 57, 138, 87, 16, 119, 151, 4, 196, 49, 55, 218, 176, 36, 81, 85, 141, 248, 196, 252, 114, 95, 211, 44, 71, 174, 64, 49, 82, 222, 192, 86, 218, 85, 45, 107, 229, 175, 171, 151, 119, 78, 41, 79, 27, 106 }, "Admin", "UsuarioAdmin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_TB_PERSONAGENS_UsuarioId",
